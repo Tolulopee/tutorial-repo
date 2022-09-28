@@ -6,13 +6,25 @@ import React, {useEffect, useState} from "react";
 // Create Our root component => App component
  function App(){
 
-  //Define use effect hook...
-  useEffect
+  const [count,setCount] = useState(0);
 
-  const [count, setCount] = useState(8);
+  //Define use effect hook...
+  useEffect(() =>{
+    //Do something...
+    if(count > 0){
+      console.log("Count", count)
+    }
+  }, [count])
+
+
+  //Define our click handler...
+  const clickHandler = (event) => {
+    setCount((prevCount) => prevCount + 1)
+
+  }
   return <section className="main-container">
-    <h1> Count:{count}</h1>
-    <button onClick={() =>setCount= count+1}>Increment</button>
+    <h1>Hello There</h1>
+    <button onClick={clickHandler}>Click me</button>
   </section>
  }
 
