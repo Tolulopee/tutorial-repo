@@ -1,31 +1,34 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+
 
 
 
 
 // Create Our root component => App component
  function App(){
+  //create a state variable
+  const[count, setCount]  = useState(0);
 
-  const [count,setCount] = useState(0);
-
-  //Define use effect hook...
-  useEffect(() =>{
-    //Do something...
-    if(count > 0){
-      console.log("Count", count)
-    }
-  }, [count])
-
-
-  //Define our click handler...
-  const clickHandler = (event) => {
-    setCount((prevCount) => prevCount + 1)
-
+  //create a function to increment the count
+  const increment = (event) => {
+    event.prevDefault();
+    setCount(prevCount => prevCount + 1);
   }
-  return <section className="main-container">
-    <h1>Hello There</h1>
-    <button onClick={clickHandler}>Click me</button>
+
+  //create a function to decrement the count
+  const decrement = (event) => {
+    event.prevDefault();
+    setCount (prevCount => prevCount - 1)
+  }
+
+
+
+ return  <section className="main-container">
+    <h1>Count:{count}</h1>
+    <button onClick={increment}>Increment</button>
+    <button onClick={decrement}>Decrement</button>
   </section>
+
  }
 
 //Export our App component
