@@ -2,17 +2,44 @@ import React, {createContext} from "react";
 
 
 //create context for the app
-const authContext = createContext()
+const     AuthContext = createContext({
+  isAuthenticated:false,
+  user :{
+    username:"tolulopekay",
+    name:"Tolulope Kalejaiye",
+    location:"Ikeja, Lagos"
+
+  }
+})
+
+
+//Define context provider
+function AuthProvider (props){
+  return(
+    <AuthContext.provider user ={{
+      isAuthenticated:false,
+  user :{
+    username:"tolulopekay",
+    name:"Tolulope Kalejaiye",
+    location:"Ikeja, Lagos"
+
+  },
+     }}>
+    {props.children}
+    </AuthContext.provider>
+
+  )
+}
 
 
 function UserProfile (){
   return(
-    <div>
-      <h1>User Profile</h1>
-      <div>Username: tolulopekay</div>
-      <div>Name:Kalejaiye Tolulope</div>
-      <div>Location: Ikeja,Lagos</div>
-    </div>
+    <AuthProvider>
+      <section className="main-container">
+        <UserProfile/>
+
+      </section>
+    </AuthProvider>
   )
 
 }
@@ -23,10 +50,12 @@ const App = () => {
 
 
 
- return  <section className="main-container">
+ return  ( <AuthProvider>
+ <section className="main-container">
    <UserProfile/>
   </section>
-
+  </AuthProvider>
+ )
  }
 
 //Export our App component
